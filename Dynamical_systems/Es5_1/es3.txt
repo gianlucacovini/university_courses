@@ -1,0 +1,9 @@
+# Sistemi dinamici lineari autonomi 3D
+x'=a*x+b*y+c*z
+y'=d*x+e*y+f*z
+z'=g*x+h*y+i*z
+par a=0.36, b=0.4, c=4.5, d=0, e=1, f=0, g=0, h=0, i=1
+init x=0.5, y=1, z=0
+@ xplot=x, yplot=y, zplot=z, axes=3d
+@ xlo=-10, ylo=-10, zlo=-10, xhi=10, yhi=10, zhi=10
+done

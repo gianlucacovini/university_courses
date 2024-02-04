@@ -1,0 +1,57 @@
+clear
+close all
+
+for i=1:6
+    f = @(t,y) ones(size(y)).*sqrt(y)*4*t;
+    df = @(t,y) ones(size(y)).*2*t./sqrt(y);
+    y0 = 1;
+    T = 1;
+    nsteps = 10*2^i;
+    maxiter = 20;
+    tol = 1e-10;
+    B = [0 0 0; 1 1/2 1/2; 0 1/2 1/2];
+    C = B(1:end-1,1);
+    b = B(end, 2:end)';
+    A = B(1:end-1,2:end);
+    t = linspace(0, T, nsteps);
+    Y = zeros(nsteps,1);
+    h = t(2)-t(1);
+    %H(i) = i;
+    H(i) = T/nsteps;
+    Y(1) = y0;
+    nstages = size(B,1)-1;
+    for n = 1:nsteps-1 
+        Kold = zeros(nstages,1);
+        iter = 0;
+        err = 1;
+        while (err> tol) && (iter<maxiter)
+            iter = iter+1;
+            num = Kold - f(t(n),Y(n)+h*A*Kold);
+            DF = 1-h*A*df(t(n),Y(n)+h*A*Kold);
+            dif = DF\num;
+            Knew = Kold - dif;
+            Kold = Knew;
+            err = max(abs(dif));
+        end
+        it(n) = iter;
+        Y(n+1) = Y(n) + h*(b'*Knew);
+    end
+    e = exp(1);
+    yex = @(t) (1+t.^2).^2;
+   
+    E(i) = norm(yex(t)-Y')/norm(yex(t));
+    I(i) = sum(it)/n;
+end
+
+subplot(2,1,1)
+plot(H,E, H, H)
+title('Errore in norma 2')
+xlabel('h')
+ylabel('Errore')
+legend('Errore', 'y=h^2', 'Location', )
+
+subplot(2,1,2)
+plot(H,I)
+title('Iterazioni medie Newton')
+xlabel('h')
+ylabel('Iterazioni')

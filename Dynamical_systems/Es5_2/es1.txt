@@ -1,0 +1,7 @@
+# Illustrazione del teorema di Hartman-Grobman - Sistema non linearizzato
+x' = x
+y' = -y+x^2
+init x=0.5, y=1
+@ xplot=x, yplot=y, axes=2d
+@ xlo=-2, ylo=-2, xhi=2, yhi=2
+done

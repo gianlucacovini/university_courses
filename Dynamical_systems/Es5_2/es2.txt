@@ -1,0 +1,8 @@
+# Sistemi dinamici oscillatori - Sistema non linearizzato
+x' = y
+y' = -sin(x)-k*y
+par k=0
+init x=0.5, y=1
+@ xplot=x, yplot=y, axes=2d
+@ xlo=-10, ylo=-10, xhi=10, yhi=10
+done

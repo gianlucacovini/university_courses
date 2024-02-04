@@ -1,0 +1,6 @@
+# ODE scalari
+s'=1
+x'=mu*x*(1-x/q)-x^2/(1+x^2)
+par mu=1,q=2
+init s=0,x=0
+done

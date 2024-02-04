@@ -1,0 +1,114 @@
+clear
+close all
+
+tspan = [0 25];
+
+y0 = [0 1 0 0.8 0 1.2]';
+
+lambda = @(y) (y(4)^2+y(5)^2+y(6)^2-9.8*y(3))/(y(1)^2+y(2)^2+y(3)^2);
+odefun = @(t, y) [y(4); y(5); y(6);...
+    -lambda(y)*y(1); -lambda(y)*y(2); -9.8-lambda(y)*y(3)];
+
+%% Simulazione con ode23
+
+[t23, y23] = ode23(odefun, tspan, y0);
+numIt23 = size(t23, 1);
+
+normInf23 = norm(y23(:,1).^2+y23(:,2).^2+y23(:,3).^2+1, 'inf');
+
+h23 = zeros(numIt23-1, 1);
+for i=1:numIt23-1
+    h23(i) = t23(i+1)-t23(i);
+end
+
+hmax23 = max(h23);
+hmin23 = min(h23);
+hmean23 = mean(h23);
+
+%% Simulazione con ode45
+
+[t45, y45] = ode45(odefun, tspan, y0);
+numIt45 = size(t45, 1);
+
+normInf45 = norm(y45(:,1).^2+y45(:,2).^2+y45(:,3).^2+1, 'inf');
+tmax45 = max(t45);
+tmin45 = min(t45);
+tmean45 = mean(t45);
+
+h45 = zeros(numIt45-1, 1);
+for i=1:numIt45-1
+    h45(i) = t45(i+1)-t45(i);
+end
+
+hmax45 = max(h45);
+hmin45 = min(h45);
+hmean45 = mean(h45);
+
+%% Simulazione con ode113
+
+[t113, y113] = ode113(odefun, tspan, y0);
+numIt113 = size(t113, 1);
+
+normInf113 = norm(y113(:,1).^2+y113(:,2).^2+y113(:,3).^2+1, 'inf');
+tmax113 = max(t113);
+tmin113 = min(t113);
+tmean113 = mean(t113);
+
+h113 = zeros(numIt113-1, 1);
+for i=1:numIt113-1
+    h113(i) = t113(i+1)-t113(i);
+end
+
+hmax113 = max(h113);
+hmin113 = min(h113);
+hmean113 = mean(h113);
+
+%% Simulazione con ode15s
+
+[t15s, y15s] = ode15s(odefun, tspan, y0);
+numIt15s = size(t15s, 1);
+
+normInf15s = norm(y15s(:,1).^2+y15s(:,2).^2+y15s(:,3).^2+1, 'inf');
+tmax15s = max(t15s);
+tmin15s = min(t15s);
+tmean15s = mean(t15s);
+
+h15s = zeros(numIt15s, 1);
+for i=1:numIt15s-2
+    h15s(i) = t15s(i+1)-t15s(i);
+end
+
+hmax15s = max(h15s);
+hmin15s = min(h15s);
+hmean15s = mean(h15s);
+
+%% Grafici
+
+figure(1)
+subplot(2,2,1)
+plot3(y23(:,1), y23(:,2), y23(:,3))
+title('Simulazione con ode23')
+xlabel('y1')
+ylabel('y2')
+zlabel('y3')
+
+subplot(2,2,2)
+plot3(y45(:,1), y45(:,2), y45(:,3))
+title('Simulazione con ode45')
+xlabel('y1')
+ylabel('y2')
+zlabel('y3')
+
+subplot(2,2,3)
+plot3(y113(:,1), y113(:,2), y113(:,3))
+title('Simulazione con ode113')
+xlabel('y1')
+ylabel('y2')
+zlabel('y3')
+
+subplot(2,2,4)
+plot3(y15s(:,1), y15s(:,2), y15s(:,3))
+title('Simulazione con ode15s')
+xlabel('y1')
+ylabel('y2')
+zlabel('y3')

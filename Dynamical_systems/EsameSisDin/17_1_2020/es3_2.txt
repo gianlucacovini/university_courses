@@ -1,0 +1,9 @@
+# Es3.2 - 17/01/2020
+x' = 10*(y-x)
+y' = r*x-y-x*z
+z' = x*y-2*z
+par r=1
+init x=0.1, y=0.1, z=0.1
+@ xplot=x, yplot=y, zplot=z, axes=3d
+@ xlo=-10, ylo=-10, zlo=-10, xhi=10, yhi=10, zhi=10
+done

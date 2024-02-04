@@ -1,0 +1,6 @@
+# Es.3 - Esame
+x' = y
+y' = a-y-sin(x)
+par a=1
+init x=0, y=0
+done

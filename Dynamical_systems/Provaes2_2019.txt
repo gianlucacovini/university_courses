@@ -1,0 +1,7 @@
+x' = -x+20*y
+y' = -20*x-y
+z' = -0.2*z
+init x=3, y=3, z=1
+@ xplot=x, yplot=y, zplot=z, axes=3d
+@ xlo=-10, ylo=-10, zlo=-10, xhi=10, yhi=10, zhi=10
+done

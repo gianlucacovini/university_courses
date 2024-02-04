@@ -1,0 +1,5 @@
+# Prova es4 20/7/2018
+x' = x*(x^2+y^2-2*x-3)-y
+y' = y*(x^2+y^2-2*x-3)+x
+init x=0, y=0
+done

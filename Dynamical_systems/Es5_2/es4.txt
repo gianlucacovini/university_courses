@@ -1,0 +1,9 @@
+# Attrattore di Rossler
+x' = -y-z
+y' = x+a*y
+z' = b*x-c*z+x*z
+par a=0.36, b=0.4, c=4.5
+init x=0, y=-4.3, z=0
+@ xplot=x, yplot=y, zplot=z, axes=3d
+@ xlo=-10, ylo=-10, zlo=-10, xhi=10, yhi=10, zhi=10
+done

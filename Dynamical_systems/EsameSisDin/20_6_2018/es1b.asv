@@ -1,0 +1,28 @@
+clear
+close all
+
+%% Adam-Bashford ordine 1
+
+k= 1;
+% ro(x) = x - 1;
+% sigma(x) = 1;
+
+f = @(Z) Z-1;
+
+n = 1000;
+x = linspace(-2.5, 2.5, n);
+
+[X, Y] = meshgrid(x);
+
+F = f(X);
+Z = abs(F);
+
+v = [1 1];
+
+figure(1)
+contour(X, Y, F, v)
+grid on
+grid minor
+title('Adam-Bashfort di ordine 1')
+xlabel('Re')
+ylabel('Im')

@@ -1,0 +1,6 @@
+# Es4 - 20/6/2018
+u' = a*u^2-u*v
+v' = -a*v+u^2
+par a=0
+init u=0, v=0
+done

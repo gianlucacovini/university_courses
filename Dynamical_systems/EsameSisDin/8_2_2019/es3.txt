@@ -1,0 +1,6 @@
+# Es3 - 8/2/2019
+x' = y
+y' = -4*sin(x)+mu
+par mu=0
+init x=0, y=0
+done

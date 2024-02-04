@@ -1,0 +1,7 @@
+# Es 2.2 - 16/01/2019
+x' = (-5*x-x*y+5*y^2+z)/eps+y*x-x
+y' = (-10*x-x*y+10*y^2+z)/eps-y*x+x
+z' = (x*y-z)/eps-y*z+x
+par eps=1
+init x0=2/5, y0=0, z0=0
+done
